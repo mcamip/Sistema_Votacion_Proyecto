@@ -28,6 +28,7 @@ jobs:
     - name: Ejecutar pruebas de integración con Pytest
       run: |
         python -m pytest tests/ -v
+        
     - name: Analizar código con SonarCloud
       uses: SonarSource/sonarqube-scan-action@v6
       env:
