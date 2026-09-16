@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Candidatos</h1>
+
+<form method="post" class="formulario">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <label for="nombre_planeta">Nombre planeta</label>
+    <input type="text" id="nombre_planeta" name="nombre_planeta" placeholder="Nombre planeta" required>
+
+    <label for="propuestas">Propuestas</label>
+    <input type="text" id="propuestas" name="propuestas" placeholder="Propuestas" required>
+
+    <label for="numero_tarjeton">N° tarjetón</label>
+    <input type="number" id="numero_tarjeton" name="numero_tarjeton" placeholder="N° tarjetón" required>
+
+    <label for="id_estudiante">Estudiante que representa</label>
+    <select id="id_estudiante" name="id_estudiante" required>
+        <option value="" disabled selected>Estudiante que representa</option>
+        {% for e in estudiantes %}
+        <option value="{{ e.id_estudiante }}">{{ e.nombres }} {{ e.apellidos }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Agregar</button>
+</form>
+
+<table>
+    <tr>
+        <th>ID</th><th>Tarjetón</th><th>Planeta</th><th>Propuestas</th><th>Representa a</th>
+    </tr>
+    {% for candidato, estudiante in candidatos %}
+    <tr>
+        <td>{{ candidato.id_candidato }}</td>
+        <td>{{ candidato.numero_tarjeton }}</td>
+        <td>{{ candidato.nombre_planeta }}</td>
+        <td>{{ candidato.propuestas }}</td>
+        <td>{{ estudiante.nombres }} {{ estudiante.apellidos }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

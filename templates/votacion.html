@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Emitir voto</h1>
+
+<form method="post" class="formulario">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <label for="id_estudiante">Estudiante que vota</label>
+    <select id="id_estudiante" name="id_estudiante" required>
+        <option value="" disabled selected>Estudiante que vota</option>
+        {% for e in estudiantes %}
+        <option value="{{ e.id_estudiante }}">{{ e.nombres }} {{ e.apellidos }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="id_candidato">Candidato</label>
+    <select id="id_candidato" name="id_candidato" required>
+        <option value="" disabled selected>Candidato</option>
+        {% for c in candidatos %}
+        <option value="{{ c.id_candidato }}">Tarjetón {{ c.numero_tarjeton }} - {{ c.nombre_planeta }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Votar</button>
+</form>
+{% endblock %}

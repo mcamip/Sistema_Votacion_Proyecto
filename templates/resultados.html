@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Resultados</h1>
+<table>
+    <tr><th>Tarjetón</th><th>Planeta</th><th>Total votos</th></tr>
+    {% for r in resultados %}
+    <tr>
+        <td>{{ r.candidato.numero_tarjeton }}</td>
+        <td>{{ r.candidato.nombre_planeta }}</td>
+        <td>{{ r.total_votos }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

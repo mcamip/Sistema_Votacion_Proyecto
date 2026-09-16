@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Carreras</h1>
+
+<form method="post" class="formulario">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+
+    <label for="costo">Costo</label>
+    <input type="number" id="costo" step="0.01" name="costo" placeholder="Costo" required>
+
+    <label for="semestres">Semestres</label>
+    <input type="number" id="semestres" name="semestres" placeholder="Semestres" required>
+
+    <label for="modalidad">Modalidad</label>
+    <input type="text" id="modalidad" name="modalidad" placeholder="Modalidad" required>
+
+    <label for="facultad">Facultad</label>
+    <input type="text" id="facultad" name="facultad" placeholder="Facultad" required>
+
+    <button type="submit">Agregar</button>
+</form>
+
+<table>
+    <tr>
+        <th>ID</th><th>Nombre</th><th>Costo</th><th>Semestres</th><th>Modalidad</th><th>Facultad</th>
+    </tr>
+    {% for c in carreras %}
+    <tr>
+        <td>{{ c.id_carrera }}</td>
+        <td>{{ c.nombre }}</td>
+        <td>{{ c.costo }}</td>
+        <td>{{ c.semestres }}</td>
+        <td>{{ c.modalidad }}</td>
+        <td>{{ c.facultad }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
